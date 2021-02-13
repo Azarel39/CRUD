@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="card shadow mt-4">
+        <div class="card-header">
+            <h3 class="card-title">
+                {{ message }}
+            </h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {% if arreglo %}
+                        <table class="table">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in arreglo %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.nombre }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    {% if arreglo %}
+                        <table class="table">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>OTRO</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in arreglo %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.nombre }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

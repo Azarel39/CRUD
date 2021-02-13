@@ -1,0 +1,107 @@
+<!doctype html>
+{% load humanize %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="card shadow mt-4">
+        <div class="card-header">
+            <h3 class="card-title">
+                Registrar una persona
+            </h3>
+        </div>
+        <div class="card-body">
+            {% if errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ errors }}
+                </div>
+            {% endif %}
+            {% if created %}
+                <div class="alert alert-success" role="alert">
+                    {{ created }}
+                </div>
+            {% endif %}
+
+            <form action="{% url 'crud-person' %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_first_name">Nombre</label>
+                            {{ person_form.first_name }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_last_name">Apellido</label>
+                            {{ person_form.last_name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_phone">Telefono</label>
+                            {{ person_form.phone }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_email">Email</label>
+                            {{ person_form.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-success btn-block">
+                            Crear person
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <hr>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Creación</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for person in persons %}
+                        <tr>
+                            <td>{{ person.id }}</td>
+                            <td>{{ person.first_name }}</td>
+                            <td>{{ person.last_name }}</td>
+                            <td>{{ person.phone }}</td>
+                            <td>{{ person.email }}</td>
+                            <td>Hace {{ person.date_joined|timesince }}</td>
+                            <td>
+                                <a href="{% url 'crud-drop-person' person.id %}" class="btn btn-danger">Borrar</a>
+                                <a href="{% url 'crud-edit-person' person.id %}" class="btn btn-success">Editar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
