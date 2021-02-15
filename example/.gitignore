@@ -1,4 +1,5 @@
 /venvs
+/venv
 /.idea
 *.sqlite3
 *.pyc
